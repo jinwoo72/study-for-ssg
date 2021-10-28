@@ -1,9 +1,11 @@
 package com.ssg;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Scanner;
 
+import com.ssg.container.Container;
 import com.ssg.controller.ArticleController;
 import com.ssg.controller.Controller;
 import com.ssg.controller.MemberController;
@@ -12,25 +14,19 @@ import com.ssg.dto.Article;
 import com.ssg.dto.Member;
 
 public class App {
-
-	List<Article> articles = new ArrayList<>();
-	List<Member> members = new ArrayList<>();
-
-	App() {
-		articles = new ArrayList<>();
-		members = new ArrayList<>();
-	}
-
+	
 	void start() {
 		System.out.printf("==== 프로그램 시작 ====\n");
 
 		Scanner scanner = new Scanner(System.in);
 
-		MemberController memberController = new MemberController(scanner, members);
-		ArticleController articleController = new ArticleController(scanner, articles);
+		MemberController memberController = new MemberController(scanner);
+		ArticleController articleController = new ArticleController(scanner);
 		
-		articleController.makeTestData();
-	    memberController.makeTestData();
+		Container.articleDao.makeTestData();
+	    Container.memberDao.makeTestData();
+	    
+	    
 
 		while (true) {
 
